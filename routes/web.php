@@ -20,3 +20,6 @@ Route::get( '/', 'HomeController@index' ) ->name('home');
 }); */
 
 Route::resource('about', 'AboutController');
+Route::prefix('about')->group(function() {
+    Route::post('search', "AboutController@search")->name("about.search");
+});

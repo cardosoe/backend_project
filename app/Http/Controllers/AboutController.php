@@ -14,9 +14,22 @@ class AboutController extends Controller
      */
     public function index()
     {           
-        $response["about"] = About::all();     
-        return view("about.index",$response);
+        $repo["coleccion"] = About::all(); //:all import all data from database    
+        return view("about.index",$repo);
     }
+
+   public function search(Request $request)
+   {
+      $search= $request->input("search");
+      $result = About::select()
+            ->where("name", "like", "%$search%")
+            ->orWhere("email", "like", "%$search%")
+            ->orWhere("phone", "like", "%$search%")
+            ->get();
+            
+        return view("about.index")->with(["coleccion" => $result]);
+   } 
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +38,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        //
+        return view("about.create");
     }
 
     /**
@@ -36,7 +49,12 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dump($request->all());
+        $data = $request->except("_token");
+        //dump($data);
+        //die(); 
+        About::insert($data);
+        return redirect()->route("about.index");
     }
 
     /**
@@ -58,7 +76,9 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        //
+       $data = About::findOrFail($id);
+      //dd($data);
+       return view("about.edit")->with(["about"=> $data]); 
     }
 
     /**
@@ -70,7 +90,13 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*dump($request->all());
+        dump($id);
+        die();*/
+
+        $data = $request->except("_token","_method");
+        About::where("id","=",$id)->update($data); //eloquent hace la consulta y una vez que obtiene el resultado de la consulta actualiza la data con las excepciones descriptas en la línea superior //
+        return redirect()->route("about.index"); 
     }
 
     /**
@@ -81,6 +107,7 @@ class AboutController extends Controller
      */
     public function destroy($id)
     {
-        //
+        About::destroy($id);
+        return redirect()->route("about.index"); 
     }
 }

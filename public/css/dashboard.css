@@ -98,3 +98,18 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.d-flex {
+  margin-bottom: 0;
+}
+
+.h2 {
+  margin-top: 30px;
+}
+
