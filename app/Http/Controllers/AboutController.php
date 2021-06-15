@@ -15,7 +15,7 @@ class AboutController extends Controller
     public function index()
     {           
         $repo["coleccion"] = About::all(); //:all import all data from database    
-        return view("about.index",$repo);
+        return view("about.index",$repo)    ;
     }
 
    public function search(Request $request)
@@ -29,7 +29,6 @@ class AboutController extends Controller
             
         return view("about.index")->with(["coleccion" => $result]);
    } 
-
 
     /**
      * Show the form for creating a new resource.
