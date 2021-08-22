@@ -21,7 +21,6 @@
   </div>
 </nav>
 
-
 <table class="table table-hover">
   <thead>
     <tr>
