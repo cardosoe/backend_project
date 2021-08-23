@@ -9,7 +9,8 @@
 
 <body>
   <p>Hola! {{ $about["name"] }} </p>
-  <p>mensaje recibido: {{ $about["message"] }} </p>
+  <p>Recibimos tu mensaje: {{ $about["message"] }} a la mayor brevedad nos pondremos en contacto telefónicamente. <br>
+    Gracias por contactarnos!</p>
 </body>
 
 </html>
